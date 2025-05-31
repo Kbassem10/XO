@@ -1,3 +1,4 @@
+import json
 def game_finish(board):
     return check_winner(board) is not None or is_draw(board)
 
@@ -71,3 +72,24 @@ def get_game_result(board):
         return 'DRAW'
     else:
         return 'ONGOING'
+
+def create_empty_board():
+    """Create a new empty board"""
+    return [[" " for _ in range(3)] for _ in range(3)]
+
+def parse_board(board_string):
+    """Parse board from string format to 2D list"""
+    try:
+        if isinstance(board_string, str):
+            # If it's a JSON string, parse it
+            board = json.loads(board_string)
+        else:
+            board = board_string
+        
+        # Ensure it's a proper 3x3 board
+        if len(board) == 3 and all(len(row) == 3 for row in board):
+            return board
+        else:
+            return create_empty_board()
+    except:
+        return create_empty_board()
