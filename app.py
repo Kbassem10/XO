@@ -58,3 +58,9 @@ def reset_game():
         'result': 'ONGOING',
         'board': board
     })
+
+# For Vercel deployment
+app.config['ENV'] = 'production'
+
+if __name__ == '__main__':
+    app.run(debug=True)
