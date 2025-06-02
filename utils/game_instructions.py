@@ -3,15 +3,6 @@ def game_finish(board):
     return check_winner(board) is not None or is_draw(board)
 
 def check_winner(board):
-    """
-    Check if there's a winner on the board.
-    
-    Args:
-        board: 3x3 list representing the game board
-        
-    Returns:
-        str: 'X' if human wins, 'O' if AI wins, None if no winner
-    """
     # Check rows
     for row in board:
         if row[0] == row[1] == row[2] and row[0] != ' ':
@@ -32,15 +23,6 @@ def check_winner(board):
     return None
 
 def is_draw(board):
-    """
-    Check if the game is a draw (board is full with no winner).
-    
-    Args:
-        board: 3x3 list representing the game board
-        
-    Returns:
-        bool: True if it's a draw, False otherwise
-    """
     if check_winner(board) is not None:
         return False
     
@@ -53,15 +35,6 @@ def is_draw(board):
     return True
 
 def get_game_result(board):
-    """
-    Get the final result of the game.
-    
-    Args:
-        board: 3x3 list representing the game board
-        
-    Returns:
-        str: 'X_WINS', 'O_WINS', 'DRAW', or 'ONGOING'
-    """
     winner = check_winner(board)
     
     if winner == 'X':
@@ -74,22 +47,22 @@ def get_game_result(board):
         return 'ONGOING'
 
 def create_empty_board():
-    """Create a new empty board"""
     return [[" " for _ in range(3)] for _ in range(3)]
 
+#AI Generated
 def parse_board(board_string):
-    """Parse board from string format to 2D list"""
     try:
         if isinstance(board_string, str):
-            # If it's a JSON string, parse it
+            #if it's a JSON string, parse it
             board = json.loads(board_string)
         else:
             board = board_string
         
-        # Ensure it's a proper 3x3 board
+        #ensure it's a proper 3x3 board
         if len(board) == 3 and all(len(row) == 3 for row in board):
             return board
         else:
             return create_empty_board()
     except:
         return create_empty_board()
+
