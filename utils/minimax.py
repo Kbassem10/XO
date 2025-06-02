@@ -27,7 +27,6 @@ def minimax(board, is_ai_turn, memo=None):
         else:  #draw or ongoing
             result = 0
 
-        memo[key] = result #save the result to the memo
         return result
         
     if is_ai_turn: #if the game is still going and it's AI turn
